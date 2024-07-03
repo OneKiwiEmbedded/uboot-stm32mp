@@ -115,14 +115,9 @@
 	vdda-supply = <&v3v3>;
 	vref-supply = <&v3v3>;
 	status = "okay";
+	/*
 	adc1: adc@0 {
 		status = "okay";
-		/*
-		 * Type-C USB_PWR_CC1 & USB_PWR_CC2 on in6 & in12.
-		 * Use at least 5 * RC time, e.g. 5 * (Rp + Rd) * C:
-		 * 5 * (5.1 + 47kOhms) * 5pF => 1.3us.
-		 * Use arbitrary margin here (e.g. 5us).
-		 */
 		channel@6 {
 			reg = <6>;
 			st,min-sample-time-ns = <5000>;
@@ -131,7 +126,7 @@
 			reg = <12>;
 			st,min-sample-time-ns = <5000>;
 		};
-	};
+	};*/
 };
 
 &arm_wdt {
