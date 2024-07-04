@@ -9,11 +9,52 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/leds/common.h>
-#include <dt-bindings/regulator/st,stm32mp13-regulator.h>
 #include <dt-bindings/rtc/rtc-stm32.h>
+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
 #include "stm32mp135.dtsi"
-#include "stm32mp13xf.dtsi"
-#include "stm32mp13-kiwi-pin.dtsi"
+#include "stm32mp13xd.dtsi"
+#include "stm32mp13-pinctrl.dtsi"
+
+&pinctrl {
+
+	i2c4_pins_b: i2c4-1 {
+		pins {
+			pinmux = <STM32_PINMUX('E', 15, AF6)>, /* I2C4_SCL */
+				 <STM32_PINMUX('B', 7, AF6)>; /* I2C4_SDA */
+			bias-disable;
+			drive-open-drain;
+			slew-rate = <0>;
+		};
+	};
+
+	i2c4_sleep_pins_b: i2c4-sleep-1 {
+		pins {
+			pinmux = <STM32_PINMUX('E', 15, ANALOG)>, /* I2C4_SCL */
+				 <STM32_PINMUX('B', 7, ANALOG)>; /* I2C4_SDA */
+		};
+	};
+
+	sdmmc2_d47_pins_a: sdmmc2-d47-0 {
+		pins {
+			pinmux = <STM32_PINMUX('F', 0, AF10)>, /* SDMMC2_D4 */
+				 <STM32_PINMUX('B', 9, AF10)>, /* SDMMC2_D5 */
+				 <STM32_PINMUX('C', 6, AF10)>, /* SDMMC2_D6 */
+				 <STM32_PINMUX('C', 7, AF10)>; /* SDMMC2_D7 */
+			slew-rate = <1>;
+			drive-push-pull;
+			bias-pull-up;
+		};
+	};
+
+	sdmmc2_d47_sleep_pins_a: sdmmc2-d47-sleep-0 {
+		pins {
+			pinmux = <STM32_PINMUX('F', 0, ANALOG)>, /* SDMMC2_D4 */
+				 <STM32_PINMUX('B', 9, ANALOG)>, /* SDMMC2_D5 */
+				 <STM32_PINMUX('C', 6, ANALOG)>, /* SDMMC2_D6 */
+				 <STM32_PINMUX('C', 7, ANALOG)>; /* SDMMC2_D7 */
+		};
+	};
+};
 
 / {
 	model = "OneKiwi STM32MP13xxAE SOM v1.0";
@@ -138,9 +179,10 @@
 	status = "okay";
 };
 
+/*
 &cryp {
 	status = "okay";
-};
+};*/
 
 &dcmipp {
 	status = "okay";
@@ -153,6 +195,7 @@
 	status = "okay";
 };
 
+
 &i2c1 {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&i2c1_pins_a>;
@@ -160,6 +203,18 @@
 	i2c-scl-rising-time-ns = <96>;
 	i2c-scl-falling-time-ns = <3>;
 	clock-frequency = <1000000>;
+	status = "okay";
+	/delete-property/dmas;
+	/delete-property/dma-names;
+};
+
+&i2c4 {
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&i2c4_pins_b>;
+	pinctrl-1 = <&i2c4_sleep_pins_b>;
+	i2c-scl-rising-time-ns = <170>;
+	i2c-scl-falling-time-ns = <5>;
+	clock-frequency = <400000>;
 	status = "okay";
 	/* spare dmas for other usage */
 	/delete-property/dmas;
