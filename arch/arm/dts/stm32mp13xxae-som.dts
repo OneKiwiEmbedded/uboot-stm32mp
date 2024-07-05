@@ -70,13 +70,15 @@
 		#size-cells = <1>;
 		ranges;
 
+		/*
 		framebuffer {
 			compatible = "simple-framebuffer";
 			clocks = <&rcc LTDC_PX>;
 			status = "disabled";
-		};
+		};*/
 	};
 
+	/*
 	clocks {
 		clk_ext_camera: clk-ext-camera {
 			#clock-cells = <0>;
@@ -89,7 +91,7 @@
 			compatible = "fixed-clock";
 			clock-frequency = <24000000>;
 		};
-	};
+	};*/
 
 	memory@c0000000 {
 		device_type = "memory";
@@ -137,6 +139,14 @@
 		regulator-always-on;
 	};
 
+	vdd_usb: vdd_usb {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_usb";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+	};
+
 	wake_up {
 		compatible = "gpio-keys";
 		status = "okay";
@@ -150,13 +160,14 @@
 	};
 };
 
+/*
 &adc_1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&adc1_usb_cc_pins_a>;
 	vdda-supply = <&v3v3>;
 	vref-supply = <&v3v3>;
 	status = "okay";
-	/*
+	
 	adc1: adc@0 {
 		status = "okay";
 		channel@6 {
@@ -167,8 +178,8 @@
 			reg = <12>;
 			st,min-sample-time-ns = <5000>;
 		};
-	};*/
-};
+	};
+};*/
 
 &arm_wdt {
 	timeout-sec = <32>;
@@ -401,7 +412,7 @@
 };
 
 &usbphyc_port0 {
-	phy-supply = <&v3v3>;
+	phy-supply = <&vdd_usb>;
 	st,current-boost-microamp = <1000>;
 	st,decrease-hs-slew-rate;
 	st,tune-hs-dc-level = <2>;
@@ -415,7 +426,7 @@
 };
 
 &usbphyc_port1 {
-	phy-supply = <&v3v3>;
+	phy-supply = <&vdd_usb>;
 	st,current-boost-microamp = <1000>;
 	st,decrease-hs-slew-rate;
 	st,tune-hs-dc-level = <2>;
