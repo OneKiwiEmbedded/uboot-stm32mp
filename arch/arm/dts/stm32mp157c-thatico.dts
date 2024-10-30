@@ -1,0 +1,49 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2019 - All Rights Reserved
+ * Author: Alexandre Torgue <alexandre.torgue@st.com> for STMicroelectronics.
+ */
+
+/dts-v1/;
+
+#include "stm32mp157.dtsi"
+#include "stm32mp15xc.dtsi"
+#include "stm32mp15-pinctrl.dtsi"
+#include "stm32mp15xxac-pinctrl.dtsi"
+#include "stm32mp157c-thatico.dtsi"
+#include "stm32mp157c-thatico-scmi.dtsi"
+#include <dt-bindings/rtc/rtc-stm32.h>
+
+/ {
+	model = "OneKiwi STM32MP157C";
+	compatible = "st,stm32mp157c-thatico", "st,stm32mp157";
+
+	aliases {
+		//ethernet0 = &ethernet0;
+		//serial3 = &usart2;
+	};
+
+	chosen {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		stdout-path = "serial0:115200n8";
+
+		framebuffer {
+			compatible = "simple-framebuffer";
+			clocks = <&rcc LTDC_PX>, <&rcc DSI>, <&rcc DSI_PX>;
+			status = "okay";
+		};
+	};
+};
+
+&cryp1 {
+	status = "okay";
+};
+
+&rtc {
+	st,lsco = <RTC_OUT2_RMP>;
+	pinctrl-0 = <&rtc_out2_rmp_pins_a>;
+	pinctrl-names = "default";
+};
+
