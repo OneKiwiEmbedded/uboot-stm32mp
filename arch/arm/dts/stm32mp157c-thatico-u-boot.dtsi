@@ -8,33 +8,15 @@
 / {
 	aliases {
 		i2c3 = &i2c4;
-		usb0 = &usbotg_hs;
 	};
 
 	config {
 		u-boot,boot-led = "heartbeat";
 		u-boot,error-led = "error";
 		u-boot,mmc-env-partition = "u-boot-env";
-		st,adc_usb_pd = <&adc1 18>, <&adc1 19>;
-		st,fastboot-gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-		st,stm32prog-gpios = <&gpioa 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+		//st,fastboot-gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+		//st,stm32prog-gpios = <&gpioa 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 	};
-
-	led {
-		led-red {
-			label = "error";
-			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
-		};
-	};
-
-	fwu-mdata {
-		compatible = "u-boot,fwu-mdata-gpt";
-		fwu-mdata-store = <&sdmmc1>;
-	};
-};
-
-&adc {
-	status = "okay";
 };
 
 &uart4 {
@@ -51,8 +33,4 @@
 		/* pull-up on rx to avoid floating level */
 		bias-pull-up;
 	};
-};
-
-&usbotg_hs {
-	u-boot,force-b-session-valid;
 };

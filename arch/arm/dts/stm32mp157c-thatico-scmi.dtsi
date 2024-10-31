@@ -8,8 +8,8 @@
 
 / {
 	reserved-memory {
-		optee@de000000 {
-			reg = <0xde000000 0x2000000>;
+		optee@fe000000 {
+			reg = <0xfe000000 0x2000000>;
 			no-map;
 		};
 	};
@@ -87,6 +87,11 @@
 
 &rtc {
 	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
+};
+
+&spi6 {
+	clocks = <&scmi_clk CK_SCMI_SPI6>;
+	resets = <&scmi_reset RST_SCMI_SPI6>;
 };
 
 &usart1 {
