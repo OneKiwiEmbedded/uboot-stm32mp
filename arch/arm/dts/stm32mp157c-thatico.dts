@@ -22,6 +22,7 @@
 
 	aliases {
 		serial0 = &uart4;
+		i2c1 = &i2c2;
 	};
 
 	chosen {
@@ -97,7 +98,7 @@
 
 	hdmi {
 		compatible = "hdmi-connector";
-		ddc-i2c-bus = <&i2c2>;
+		//ddc-i2c-bus = <&i2c2>;
 		type = "a";
 		port {
 			hdmi_connector_in: endpoint {
@@ -192,7 +193,7 @@
 		port@1 {
 			reg = <1>;
 			dsi_out: endpoint {
-				data-lanes = <0 1>;
+				//data-lanes = <0 1>;
 				remote-endpoint = <&lt8912_in>;
 				attach-bridge;
 			};
@@ -222,10 +223,11 @@
 	status = "okay";
 	/delete-property/dmas;
 	/delete-property/dma-names;
+
 	mipi_dsi_hdmi: lt8912b@48 {
 		compatible = "lontium,lt8912b";
 		reg = <0x48>;
-		//ddc-i2c-bus = <&i2c2>;
+		ddc-i2c-bus = <&i2c2>;
 		reset-gpios = <&gpioh 10 GPIO_ACTIVE_LOW>;
 		hpd-gpios = <&gpioh 15 GPIO_ACTIVE_HIGH>;
 		//swap-mipi-pn;
@@ -236,7 +238,7 @@
 			port@0 {
 				reg = <0>;
 				lt8912_in: endpoint {
-					data-lanes = <0 1>;
+					//data-lanes = <0 1>;
 					remote-endpoint = <&dsi_out>;
 				};
 			};
