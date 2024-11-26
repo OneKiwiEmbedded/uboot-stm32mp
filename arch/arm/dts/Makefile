@@ -1207,6 +1207,7 @@ dtb-$(CONFIG_STM32MP15X) += \
 	stm32mp15xx-dhcor-avenger96.dtb \
 	stm32mp15xx-dhcor-drc-compact.dtb \
 	stm32mp15xx-dhcor-testbench.dtb \
+	stm32mp15xxab-som-v11.dtb \
 	stm32mp157c-thatico.dtb
 
 dtb-$(CONFIG_STM32MP25X) += \
