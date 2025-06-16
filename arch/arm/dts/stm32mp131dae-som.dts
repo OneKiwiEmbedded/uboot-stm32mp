@@ -78,7 +78,6 @@
 		};*/
 	};
 
-	/*
 	clocks {
 		clk_ext_camera: clk-ext-camera {
 			#clock-cells = <0>;
@@ -91,7 +90,7 @@
 			compatible = "fixed-clock";
 			clock-frequency = <24000000>;
 		};
-	};*/
+	};
 
 	memory@c0000000 {
 		device_type = "memory";
@@ -207,7 +206,7 @@
 	status = "okay";
 };
 
-
+/*
 &i2c1 {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&i2c1_pins_a>;
@@ -218,7 +217,7 @@
 	status = "okay";
 	/delete-property/dmas;
 	/delete-property/dma-names;
-};
+};*/
 
 &i2c4 {
 	pinctrl-names = "default", "sleep";
@@ -228,11 +227,11 @@
 	i2c-scl-falling-time-ns = <5>;
 	clock-frequency = <400000>;
 	status = "okay";
-	/* spare dmas for other usage */
 	/delete-property/dmas;
 	/delete-property/dma-names;
 };
 
+/*
 &i2c5 {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&i2c5_pins_a>;
@@ -241,10 +240,9 @@
 	i2c-scl-falling-time-ns = <5>;
 	clock-frequency = <400000>;
 	status = "okay";
-	/* spare dmas for other usage */
 	/delete-property/dmas;
 	/delete-property/dma-names;
-};
+};*/
 
 /*
 &ltdc {
@@ -395,6 +393,7 @@
 	status = "okay";
 };
 
+/*
 &usbh_ehci {
 	phys = <&usbphyc_port0>;
 	status = "okay";
@@ -439,4 +438,37 @@
 	st,enable-hs-rx-gain-eq;
 	st,no-hs-ftime-ctrl;
 	st,no-lsfs-sc;
+};*/
+
+&usbh_ehci {
+	phys = <&usbphyc_port0>;
+	status = "okay";
 };
+
+&usbotg_hs {
+	phys = <&usbphyc_port1 0>;
+	phy-names = "usb2-phy";
+	u-boot,force-b-session-valid;
+	u-boot,force-vbus-detection;
+	dr_mode = "peripheral";
+	usb-role-switch;
+	role-switch-default-mode = "peripheral";
+	status = "okay";
+};
+
+&usbphyc {
+	status = "okay";
+};
+
+&usbphyc_port0 {
+	phy-supply = <&vdd_usb>;
+};
+
+&usbphyc_port1 {
+    phy-supply = <&vdd_usb>;
+};
+
+/*
+&vdd_usb {
+	u-boot,dm-pre-reloc;
+};*/
