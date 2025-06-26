@@ -160,27 +160,6 @@
 	};
 };
 
-/*
-&adc_1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&adc1_usb_cc_pins_a>;
-	vdda-supply = <&v3v3>;
-	vref-supply = <&v3v3>;
-	status = "okay";
-	
-	adc1: adc@0 {
-		status = "okay";
-		channel@6 {
-			reg = <6>;
-			st,min-sample-time-ns = <5000>;
-		};
-		channel@12 {
-			reg = <12>;
-			st,min-sample-time-ns = <5000>;
-		};
-	};
-};*/
-
 &arm_wdt {
 	timeout-sec = <32>;
 	status = "okay";
@@ -190,35 +169,9 @@
 	status = "okay";
 };
 
-/*
-&cryp {
-	status = "okay";
-};*/
-
-/*
-&dcmipp {
-	status = "okay";
-	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&dcmipp_pins_a>;
-	pinctrl-1 = <&dcmipp_sleep_pins_a>;
-};*/
-
 &dts {
 	status = "okay";
 };
-
-/*
-&i2c1 {
-	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&i2c1_pins_a>;
-	pinctrl-1 = <&i2c1_sleep_pins_a>;
-	i2c-scl-rising-time-ns = <96>;
-	i2c-scl-falling-time-ns = <3>;
-	clock-frequency = <1000000>;
-	status = "okay";
-	/delete-property/dmas;
-	/delete-property/dma-names;
-};*/
 
 &i2c4 {
 	pinctrl-names = "default", "sleep";
@@ -231,27 +184,6 @@
 	/delete-property/dmas;
 	/delete-property/dma-names;
 };
-
-/*
-&i2c5 {
-	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&i2c5_pins_a>;
-	pinctrl-1 = <&i2c5_sleep_pins_a>;
-	i2c-scl-rising-time-ns = <170>;
-	i2c-scl-falling-time-ns = <5>;
-	clock-frequency = <400000>;
-	status = "okay";
-	/delete-property/dmas;
-	/delete-property/dma-names;
-};*/
-
-/*
-&ltdc {
-	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&ltdc_pins_a>;
-	pinctrl-1 = <&ltdc_sleep_pins_a>;
-	status = "okay";
-};*/
 
 &rtc {
 	st,lsco = <RTC_OUT2_RMP>;
@@ -275,25 +207,6 @@
 };
 
 /* eMMC */
-/*
-&sdmmc2 {
-	pinctrl-names = "default", "opendrain", "sleep";
-	pinctrl-0 = <&sdmmc2_b8_pins_a &sdmmc2_clk_pins_a>;
-	pinctrl-1 = <&sdmmc2_b8_od_pins_a &sdmmc2_clk_pins_a>;
-	pinctrl-2 = <&sdmmc2_b8_sleep_pins_a>;
-	non-removable;
-	no-sd;
-	no-sdio;
-	// st,neg-edge;
-	bus-width = <8>;
-	vmmc-supply = <&v3v3>;
-	vqmmc-supply = <&v3v3>;
-	// mmc-pwrseq = <&wifi_pwrseq>;
-	#address-cells = <1>;
-	#size-cells = <0>;
-	status = "okay";
-};*/
-
 &sdmmc2 {
 	pinctrl-names = "default", "opendrain", "sleep";
 	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_a &sdmmc2_clk_pins_a>;
@@ -310,71 +223,6 @@
 	status = "okay";
 };
 
-&spi5 {
-	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&spi5_pins_a>;
-	pinctrl-1 = <&spi5_sleep_pins_a>;
-	status = "disabled";
-};
-
-&timers3 {
-	/delete-property/dmas;
-	/delete-property/dma-names;
-	status = "disabled";
-	pwm {
-		pinctrl-0 = <&pwm3_pins_a>;
-		pinctrl-1 = <&pwm3_sleep_pins_a>;
-		pinctrl-names = "default", "sleep";
-		status = "okay";
-	};
-	timer@2 {
-		status = "okay";
-	};
-};
-
-&timers4 {
-	/delete-property/dmas;
-	/delete-property/dma-names;
-	status = "disabled";
-	pwm {
-		pinctrl-0 = <&pwm4_pins_a>;
-		pinctrl-1 = <&pwm4_sleep_pins_a>;
-		pinctrl-names = "default", "sleep";
-		status = "okay";
-	};
-	timer@3 {
-		status = "okay";
-	};
-};
-
-&timers8 {
-	/delete-property/dmas;
-	/delete-property/dma-names;
-	status = "disabled";
-	pwm {
-		pinctrl-0 = <&pwm8_pins_a>;
-		pinctrl-1 = <&pwm8_sleep_pins_a>;
-		pinctrl-names = "default", "sleep";
-		status = "okay";
-	};
-	timer@7 {
-		status = "okay";
-	};
-};
-
-&timers14 {
-	status = "disabled";
-	pwm {
-		pinctrl-0 = <&pwm14_pins_a>;
-		pinctrl-1 = <&pwm14_sleep_pins_a>;
-		pinctrl-names = "default", "sleep";
-		status = "okay";
-	};
-	timer@13 {
-		status = "okay";
-	};
-};
-
 &uart4 {
 	pinctrl-names = "default", "sleep", "idle";
 	pinctrl-0 = <&uart4_pins_a>;
@@ -384,83 +232,6 @@
 	/delete-property/dma-names;
 	status = "okay";
 };
-/*
-&uart8 {
-	pinctrl-names = "default", "sleep", "idle";
-	pinctrl-0 = <&uart8_pins_a>;
-	pinctrl-1 = <&uart8_sleep_pins_a>;
-	pinctrl-2 = <&uart8_idle_pins_a>;
-	/delete-property/dmas;
-	/delete-property/dma-names;
-	status = "disabled";
-};*/
-
-/*
-&usart1 {
-	pinctrl-names = "default", "sleep", "idle";
-	pinctrl-0 = <&usart1_pins_a>;
-	pinctrl-1 = <&usart1_sleep_pins_a>;
-	pinctrl-2 = <&usart1_idle_pins_a>;
-	uart-has-rtscts;
-	status = "disabled";
-};*/
-
-/*
-&usart2 {
-	pinctrl-names = "default", "sleep", "idle";
-	pinctrl-0 = <&usart2_pins_a>;
-	pinctrl-1 = <&usart2_sleep_pins_a>;
-	pinctrl-2 = <&usart2_idle_pins_a>;
-	uart-has-rtscts;
-	status = "okay";
-};*/
-
-/*
-&usbh_ehci {
-	phys = <&usbphyc_port0>;
-	status = "okay";
-	#address-cells = <1>;
-	#size-cells = <0>;
-};
-
-&usbotg_hs {
-	phys = <&usbphyc_port1 0>;
-	phy-names = "usb2-phy";
-	usb-role-switch;
-	status = "okay";
-};
-
-&usbphyc {
-	status = "okay";
-};
-
-&usbphyc_port0 {
-	phy-supply = <&vdd_usb>;
-	st,current-boost-microamp = <1000>;
-	st,decrease-hs-slew-rate;
-	st,tune-hs-dc-level = <2>;
-	st,enable-hs-rftime-reduction;
-	st,trim-hs-current = <11>;
-	st,trim-hs-impedance = <2>;
-	st,tune-squelch-level = <1>;
-	st,enable-hs-rx-gain-eq;
-	st,no-hs-ftime-ctrl;
-	st,no-lsfs-sc;
-};
-
-&usbphyc_port1 {
-	phy-supply = <&vdd_usb>;
-	st,current-boost-microamp = <1000>;
-	st,decrease-hs-slew-rate;
-	st,tune-hs-dc-level = <2>;
-	st,enable-hs-rftime-reduction;
-	st,trim-hs-current = <11>;
-	st,trim-hs-impedance = <2>;
-	st,tune-squelch-level = <1>;
-	st,enable-hs-rx-gain-eq;
-	st,no-hs-ftime-ctrl;
-	st,no-lsfs-sc;
-};*/
 
 &usbh_ehci {
 	phys = <&usbphyc_port0>;
@@ -489,8 +260,3 @@
 &usbphyc_port1 {
     phy-supply = <&vdd_usb>;
 };
-
-/*
-&vdd_usb {
-	u-boot,dm-pre-reloc;
-};*/
