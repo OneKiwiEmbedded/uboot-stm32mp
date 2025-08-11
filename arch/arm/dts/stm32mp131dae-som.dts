@@ -215,6 +215,7 @@
 	non-removable;
 	no-sd;
 	no-sdio;
+	broken-cd;
 	st,neg-edge;
 	bus-width = <8>;
 	vmmc-supply = <&v3v3>;
